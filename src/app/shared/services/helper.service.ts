@@ -8,6 +8,8 @@ export class HelperService {
 
   constructor() { }
 
+  public static disabledLoaderInterceptor = false;
+
   private static user: User | null = null;
   private static token: string | null = null;
 
