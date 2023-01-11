@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LayoutAdminComponent } from './layouts/layout-admin/layout-admin.component';
 import { AuthGuard } from './shared/guards/auth/auth.guard';
 
 const routes: Routes = [
@@ -10,8 +11,14 @@ const routes: Routes = [
     data: { guard: 'guest' }
   },
   {
-    path: 'home',
-    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule),
+    path: '',
+    component: LayoutAdminComponent,
+    children: [
+      {
+        path: 'home',
+        loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule),
+      }
+    ],
     canActivate: [AuthGuard],
     data: { guard: 'auth' }
   },
