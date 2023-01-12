@@ -16,7 +16,7 @@ import { HelperService } from "../../services/helper.service";
   providedIn: "root",
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService) { }
+  constructor() { }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -31,7 +31,6 @@ export class AuthGuard implements CanActivate {
     if ((isAuthenticated && !isGuest) || (!isAuthenticated && isGuest)) {
       return true;
     }
-    this.authService.logout();
     return false;
   }
 }
